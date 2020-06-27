@@ -1,0 +1,65 @@
+>>>>>Switch
+
+Switch>en
+Switch#conf
+Configuring from terminal, memory, or network [terminal]? 
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname SW1
+SW1(config)#line console 0
+SW1(config-line)#password upn
+SW1(config-line)#login
+SW1(config-line)#do wr
+Building configuration...
+[OK]
+SW1(config-line)#exit
+SW1(config)#enable secret cisco
+SW1(config)#int vlan 1
+SW1(config-if)#ip address 192.168.50.5 255.255.255.0
+SW1(config-if)#no shut
+
+SW1(config-if)#
+%LINK-5-CHANGED: Interface Vlan1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
+
+SW1(config-if)#exit
+SW1(config)#line vty 0 15
+SW1(config-line)#password upn
+SW1(config-line)#login
+SW1(config-line)#exit
+SW1(config)#do wr
+Building configuration...
+[OK]
+SW1(config)#
+
+
+>>>>>Router
+Router>enable
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname RT3
+RT3(config)#line console 0
+RT3(config-line)#password upn3
+RT3(config-line)#login
+RT3(config-line)#do wr
+Building configuration...
+[OK]
+RT3(config-line)#exit
+RT3(config)#enable secret cisco
+RT3(config)#int vlan 1
+RT3(config-if)#ip address 192.168.40.6 255.255.255.0
+RT3(config-if)#no shut
+
+RT3(config-if)#
+%LINK-5-CHANGED: Interface Vlan1, changed state to up
+
+RT3(config-if)#exit
+RT3(config)#line vty 0 15
+RT3(config-line)#password upn4
+RT3(config-line)#login
+RT3(config-line)#exit
+RT3(config)#do wr
+Building configuration...
+[OK]
+RT3(config)#service password-encryption
+RT3(config)#
